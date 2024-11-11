@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:11:34 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 17:26:52 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:00:17 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdbool.h>
-# include <fcntl.h> // O_RDONLY
+# include <fcntl.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <stdbool.h>
@@ -33,8 +33,8 @@
 # define CLOSED_EXIT "./sprites/closed_exit.xpm"
 
 # define RED "\033[31m"
+# define GREEN "\033[32m"
 # define GREY "\033[90m"
-# define VIOLET "\033[35m"
 # define RESET "\033[0m"
 
 typedef struct s_temp
@@ -57,7 +57,7 @@ typedef struct s_sprite
 	void		*closed_exit;
 }				t_sprite;
 
-typedef struct s_data
+typedef struct s_game
 {
 	int			move_counter;
 	int			item_count;
@@ -78,45 +78,45 @@ typedef struct s_data
 	void		*win_ptr;
 	t_temp		*temp;
 	t_sprite	*sprite;
-}				t_data;
+}				t_game;
 
-/* INPUT & MAP CHECKS */
+/* INPUT CHECKS + MAP CHECKS */
 char			*get_next_line(int fd);
 char			*ft_getnl(char *str);
-int				check_path(t_data *data);
-int				count_lines(char *argv, t_data *data);
-int				is_map_valid(char *argv, t_data *data);
-int				check_extension(char *argv);
+int				check_path(t_game *game);
+int				count_lines(char *argv, t_game *game);
+int				is_map_valid(char *argv, t_game *game);
+int				check_map_extension(char *argv);
 
-/* INITIALIZATION */
-void			alloc_matrix(char ***matrix, t_data *data);
-void			check_alloc(void *ptr, t_data *data);
-void			init_data(t_data *data);
-void			fill_matrix(char *argv, t_data *data, int i);
+/* INIT SPRITES */
+void			add_floor(t_game *game, int y, int x);
+void			add_wall(t_game *game, int y, int x);
+void			add_collectible(t_game *game, int i, int j);
+void			add_player(t_game *game, int i, int j);
+void			add_closed_exit(t_game *game, int i, int j);
+void			add_images_to_map(t_game *game, int y, int x);
+void			update_sprite(t_game *game);
+void			assign_all_sprites(t_game *game);
+
+/* INIT GAME */
+void			alloc_matrix(char ***matrix, t_game *game);
+void			check_alloc(void *ptr, t_game *game);
+void			init_data(t_game *game);
+void			fill_matrix(char *argv, t_game *game, int i);
 
 /* MANAGEMENT */
-void			free_temp(t_data *data);
-void			free_all(t_data *data);
+void			free_temp(t_game *game);
+void			free_all(t_game *game);
 void			free_matrix(char ***matrix, int y);
 void			free_ptr(void **ptr);
-void			ft_error(char *str, t_data *data);
-void			manage_file(char *argv, t_data *data, int flag);
-void			check_images_alloc(t_data *data);
-void			destroy_all_img(t_data *data);
-void			destroy_all(t_data *data, int error);
+void			ft_error(char *str, t_game *game);
+void			manage_file(char *argv, t_game *game, int flag);
+void			check_sprites_alloc(t_game *game);
+void			destroy_all_sprites(t_game *game);
+void			destroy_all(t_game *game, int error);
 
 /* START GAME */
-int				close_game(t_data *data);
-int				on_keypress(int keycode, t_data *data);
-
-/* IMAGES INIT */
-void			add_ground(t_data *data, int y, int x);
-void			add_wall(t_data *data, int y, int x);
-void			add_collectible(t_data *data, int i, int j);
-void			add_player(t_data *data, int i, int j);
-void			add_exit_close(t_data *data, int i, int j);
-void			add_images_to_map(t_data *data, int y, int x);
-void			update_image(t_data *data);
-void			assign_all_img(t_data *data);
+int				close_game(t_game *game);
+int				on_keypress(int keycode, t_game *game);
 
 #endif

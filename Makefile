@@ -13,14 +13,14 @@ RM = rm -f
 C_FLAGS = -Wall -Werror -Wextra
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11
 
-SRCS =  $(SRCS_DIR)/add_images.c			\
+SRCS =  $(SRCS_DIR)/display_sprites.c	\
 		$(SRCS_DIR)/check_input.c		\
 		$(SRCS_DIR)/check_path.c		\
 		$(SRCS_DIR)/check_utils.c		\
 		$(SRCS_DIR)/error_free.c		\
 		$(SRCS_DIR)/get_next_line.c		\
 		$(SRCS_DIR)/init_utils.c		\
-		$(SRCS_DIR)/manage_images.c		\
+		$(SRCS_DIR)/manage_sprites.c	\
 		$(SRCS_DIR)/start_game.c		\
 		$(SRCS_DIR)/so_long.c			\
 

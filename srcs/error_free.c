@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:59:39 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 15:09:18 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:08:02 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,42 +43,42 @@ void	free_matrix(char ***matrix, int y)
 	*matrix = NULL;
 }
 
-void	free_all(t_data *data)
+void	free_all(t_game *game)
 {
-	if (data->map != NULL)
-		free_matrix(&data->map, data->size_y);
-	if (data->mlx_ptr != NULL)
+	if (game->map != NULL)
+		free_matrix(&game->map, game->size_y);
+	if (game->mlx_ptr != NULL)
 	{
-		free(data->mlx_ptr);
-		data->mlx_ptr = NULL;
+		free(game->mlx_ptr);
+		game->mlx_ptr = NULL;
 	}
 }
 
-void	free_temp(t_data *data)
+void	free_temp(t_game *game)
 {
-	if (data->temp != NULL)
+	if (game->temp != NULL)
 	{
-		if (data->temp->line != NULL)
-			free_ptr((void **)&data->temp->line);
-		if (data->temp->item != NULL)
-			free_ptr((void **)&data->temp->item);
-		if (data->temp->map_check != NULL)
-			free_matrix(&data->temp->map_check, data->temp->y);
-		free(data->temp);
-		data->temp = NULL;
+		if (game->temp->line != NULL)
+			free_ptr((void **)&game->temp->line);
+		if (game->temp->item != NULL)
+			free_ptr((void **)&game->temp->item);
+		if (game->temp->map_check != NULL)
+			free_matrix(&game->temp->map_check, game->temp->y);
+		free(game->temp);
+		game->temp = NULL;
 	}
 }
 
-void	ft_error(char *str, t_data *data)
+void	ft_error(char *str, t_game *game)
 {
 	if (str != NULL)
 		ft_putstr_fd(str, 2);
-	if (data != NULL)
+	if (game != NULL)
 	{
-		if (data->temp->fd_map != -1)
-			manage_file(NULL, data, 'C');
-		free_temp(data);
-		free_all(data);
+		if (game->temp->fd_map != -1)
+			manage_file(NULL, game, 'C');
+		free_temp(game);
+		free_all(game);
 	}
 	exit(1);
 }

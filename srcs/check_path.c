@@ -20,55 +20,43 @@ static int	is_path_around(char **map, int i, int j)
 	return (1);
 }
 
-/*
-**	Fills accessible path (0, C) with '.' (as visited),
-**	returns when current path is already filled,
-**	stops when all map is filled.
-*/
-static void	flood_fill(t_data *data, int y, int x)
+static void	flood_fill(t_game *game, int y, int x)
 {
-	if (y <= 0 || y >= data->temp->y - 1 || x <= 0 || x >= data->temp->x - 1)
+	if (y <= 0 || y >= game->temp->y - 1 || x <= 0 || x >= game->temp->x - 1)
 		return ;
-	if (data->temp->map_check[y][x] == '.' || data->temp->map_check[y][x] == '1'
-		|| data->temp->map_check[y][x] == 'E')
+	if (game->temp->map_check[y][x] == '.' || game->temp->map_check[y][x] == '1'
+		|| game->temp->map_check[y][x] == 'E')
 		return ;
-	if (data->temp->map_check[y][x] == 'C')
-		data->item_found++;
-	data->temp->map_check[y][x] = '.';
-	flood_fill(data, y - 1, x);
-	flood_fill(data, y + 1, x);
-	flood_fill(data, y, x - 1);
-	flood_fill(data, y, x + 1);
+	if (game->temp->map_check[y][x] == 'C')
+		game->item_found++;
+	game->temp->map_check[y][x] = '.';
+	flood_fill(game, y - 1, x);
+	flood_fill(game, y + 1, x);
+	flood_fill(game, y, x - 1);
+	flood_fill(game, y, x + 1);
 }
 
-/*
-**	To avoid iterating inside walls :
-**	i = 1; to start from second row of the map,
-**	j = 1; to start from second column of the map.
-**
-**	is_path_around checks if the exit is accessible.
-*/
-int	check_path(t_data *data)
+int	check_path(t_game *game)
 {
 	int	i;
 	int	j;
 
-	flood_fill(data, data->player_y, data->player_x);
+	flood_fill(game, game->player_y, game->player_x);
 	i = 1;
-	while (i < data->temp->y - 1)
+	while (i < game->temp->y - 1)
 	{
 		j = 1;
-		while (data->temp->map_check[i][j])
+		while (game->temp->map_check[i][j])
 		{
-			if (data->temp->map_check[i][j] == 'E'
-				&& is_path_around(data->temp->map_check, i, j) == 0)
+			if (game->temp->map_check[i][j] == 'E'
+				&& is_path_around(game->temp->map_check, i, j) == 0)
 				return (0);
 			j++;
 		}
 		i++;
 	}
-	if (data->item_count != data->item_found)
+	if (game->item_count != game->item_found)
 		return (0);
-	data->item_found = 0;
+	game->item_found = 0;
 	return (1);
 }
