@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:23:00 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 15:24:09 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:14:32 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	move_player(t_data *data, int y, int x)
 		data->item_found++;
 	if (data->map[y][x] == 'E' && data->item_found != data->item_count)
 	{
-		ft_printf("You must collect all the woods first!\n");
+		ft_printf("You must collect all the items first!\n");
 		return ;
 	}
 	if (data->map[y][x] == 'E' && data->item_found == data->item_count)
@@ -60,7 +60,7 @@ void	move_player(t_data *data, int y, int x)
 	data->player_x = x;
 	data->map[data->player_y][data->player_x] = 'P';
 	update_image(data);
-	ft_printf("Moves : %d\n", data->move_counter++);
+	ft_printf("Movements : %d\n", data->move_counter++);
 }
 
 int	on_keypress(int keycode, t_data *data)
@@ -83,7 +83,7 @@ int	on_keypress(int keycode, t_data *data)
 	if (data->on_exit == 1)
 	{
 		ft_printf("Moves : %d\n", data->move_counter);
-		ft_printf("Victory! All woods collected, you found the exit!\n");
+		ft_printf("You win !\n");
 		close_game(data);
 	}
 	return (0);
