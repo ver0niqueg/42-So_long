@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:23:42 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 20:06:56 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:29:14 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	manage_file(char *argv, t_game *game, int flag)
 	{
 		game->temp->fd_map = open(argv, O_RDONLY);
 		if (game->temp->fd_map == -1)
-			ft_error(RED"Error\n"GREY"File issue.\n", game);
+			ft_error(RED"Error\n"GREY"File issue\n", game);
 	}
 	else if (flag == 'C')
 	{

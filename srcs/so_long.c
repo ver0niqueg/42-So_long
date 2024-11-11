@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:43:30 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 20:26:54 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:28:23 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	initialize_mlx(t_game *game)
 			game->size_y * TILE, "SO LONG");
 	if (game->win_ptr == NULL)
 	{
-		return (ft_printf(RED"Error\n"GREY"Window creation failed\n"RESET));
+		return (ft_printf(RED"Error\n"GREY"Failed to create window\n"RESET));
 		mlx_destroy_display(game->mlx_ptr);
 		return (free_all(game), 1);
 	}
