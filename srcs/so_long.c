@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:43:30 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 19:35:34 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:26:54 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	close_game(t_game *game)
 
 static void	start_game(t_game *game)
 {
-	add_images_to_map(game, 0, 0);
-	mlx_key_hook(game->win_ptr, on_keypress, game);
+	add_sprites_to_map(game, 0, 0);
+	mlx_key_hook(game->win_ptr, handle_keypress, game);
 	mlx_hook(game->win_ptr, DestroyNotify, 0, close_game, game);
 	mlx_loop(game->mlx_ptr);
 }

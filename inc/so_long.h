@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:11:34 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 20:00:17 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:26:17 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void			add_wall(t_game *game, int y, int x);
 void			add_collectible(t_game *game, int i, int j);
 void			add_player(t_game *game, int i, int j);
 void			add_closed_exit(t_game *game, int i, int j);
-void			add_images_to_map(t_game *game, int y, int x);
+void			add_sprites_to_map(t_game *game, int y, int x);
 void			update_sprite(t_game *game);
 void			assign_all_sprites(t_game *game);
 
@@ -117,6 +117,6 @@ void			destroy_all(t_game *game, int error);
 
 /* START GAME */
 int				close_game(t_game *game);
-int				on_keypress(int keycode, t_game *game);
+int				handle_keypress(int keycode, t_game *game);
 
 #endif

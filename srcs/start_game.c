@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:23:00 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 20:02:59 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:26:04 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	move_player(t_game *game, int y, int x)
 	ft_printf("Moves : %d\n", game->move_counter++);
 }
 
-int	on_keypress(int keycode, t_game *game)
+int	handle_keypress(int keycode, t_game *game)
 {
 	int	y;
 	int	x;
@@ -89,7 +89,7 @@ int	on_keypress(int keycode, t_game *game)
 	return (0);
 }
 
-void	add_images_to_map(t_game *game, int y, int x)
+void	add_sprites_to_map(t_game *game, int y, int x)
 {
 	game->sprite = ft_calloc(1, sizeof(t_sprite));
 	if (game->sprite == NULL)
