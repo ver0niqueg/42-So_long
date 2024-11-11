@@ -114,15 +114,15 @@ static int	check_map_size(t_data *data)
 int	is_map_valid(char *argv, t_data *data)
 {
 	if (count_lines(argv, data) == 0)
-		return (ft_putstr_fd("Error\nInvalid map file.\n", 2), 0);
+		return (ft_printf(RED"Error\n"GREY"Invalid Map\n"RESET), 0);
 	fill_matrix(argv, data, 0);
 	if (check_map_size(data) == 0)
-		return (ft_putstr_fd("Error\nMap must be rectangular.\n", 2), 0);
+		return (ft_printf(RED"Error\n"GREY"Map must be rectangular\n"RESET), 0);
 	if (check_walls(data) == 0)
-		return (ft_putstr_fd("Error\nMap must be surrounded by 1.\n", 2), 0);
+		return (ft_printf(RED"Error\n"GREY"Map must be surrounded by walls\n"RESET), 0);
 	if (check_map_items(data, 0, 0) == 0)
-		return (ft_putstr_fd("Error\nItem conditions not met.\n", 2), 0);
+		return (ft_printf(RED"Error\n"GREY"Items conditions are not met\n"RESET), 0);
 	if (check_path(data) == 0)
-		return (ft_putstr_fd("Error\nExit/Collectibles not on path.\n", 2), 0);
+		return (ft_printf(RED"Error\n"GREY"Exit/Items are not accessible\n"RESET), 0);
 	return (1);
 }

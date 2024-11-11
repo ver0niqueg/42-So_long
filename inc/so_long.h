@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:11:34 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 15:04:42 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:31:41 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@
 # define STAR "./sprites/star.xpm"
 # define OPENED_EXIT "./sprites/opened_exit.xpm"
 # define CLOSED_EXIT "./sprites/closed_exit.xpm"
+
+# define RED "\033[31m"
+# define GREY "\033[90m"
+# define VIOLET "\033[35m"
+# define RESET "\033[0m"
 
 typedef struct s_temp
 {
