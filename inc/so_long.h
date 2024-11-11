@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:11:34 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 15:31:41 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:26:52 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdbool.h>
 
 # define BUFFER_SIZE 1
-# define TILE 32
+# define TILE 64
 # define WALL "./sprites/wall.xpm"
 # define FLOOR "./sprites/floor.xpm"
 # define PLAYER "./sprites/player.xpm"
