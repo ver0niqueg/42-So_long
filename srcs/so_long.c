@@ -6,18 +6,21 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:43:30 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 20:28:23 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:36:50 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+/* fonction qui ferme le jeu correctement, en liberant les ressources allouees*/
 int	close_game(t_game *game)
 {
 	destroy_all(game, 0);
 	return (0);
 }
 
+/* fonction qui demarre le jeu en configurant les evenements de base pour
+l'interaction avec le joueur */
 static void	start_game(t_game *game)
 {
 	add_sprites_to_map(game, 0, 0);
@@ -26,6 +29,8 @@ static void	start_game(t_game *game)
 	mlx_loop(game->mlx_ptr);
 }
 
+/* fonction qui prepare et lance l'environnement graphique pour le jeu en
+utilisant la bibliotheque graphique mlx */
 static int	initialize_mlx(t_game *game)
 {
 	game->mlx_ptr = mlx_init();
@@ -55,6 +60,8 @@ static int	initialize_mlx(t_game *game)
 	return (0);
 }
 
+/* fonction qui check la validite des arguments avant d'initialiser les donnees
+de la map puis check la validite de la map */
 static void	check_input(int argc, char *argv, t_game *game)
 {
 	if (argc != 2)

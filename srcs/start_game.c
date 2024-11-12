@@ -6,12 +6,14 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:23:00 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 20:26:04 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:42:19 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+/* fonction qui nettoie et libere toutes les ressources utilisees par le jeu
+avant sa fermeture */
 void	destroy_all(t_game *game, int error)
 {
 	destroy_all_sprites(game);
@@ -34,6 +36,8 @@ static void	add_opened_exit(t_game *game)
 		game->sprite->opened_exit, game->exit_x * TILE, game->exit_y * TILE);
 }
 
+/* fonction qui gere les deplacements du joueur en fonction des cases
+qu'il rencontre */
 void	move_player(t_game *game, int y, int x)
 {
 	static int	is_exit_open = 0;
@@ -63,6 +67,7 @@ void	move_player(t_game *game, int y, int x)
 	ft_printf("Moves : %d\n", game->move_counter++);
 }
 
+/* fonction qui gere les evenements du clavier */
 int	handle_keypress(int keycode, t_game *game)
 {
 	int	y;
@@ -89,12 +94,13 @@ int	handle_keypress(int keycode, t_game *game)
 	return (0);
 }
 
+/* fonction qui ajoute les sprites au jeu */
 void	add_sprites_to_map(t_game *game, int y, int x)
 {
 	game->sprite = ft_calloc(1, sizeof(t_sprite));
 	if (game->sprite == NULL)
 	{
-		ft_putstr_fd("Error\nMemory allocation failed.\n", 2);
+		ft_printf(RED"Error\n"GREY"Memory allocation failed\n"RESET);
 		destroy_all(game, 1);
 	}
 	assign_all_sprites(game);

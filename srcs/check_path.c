@@ -6,12 +6,14 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:43:38 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 20:31:34 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:52:26 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+/* fonction qui check si une case specifiee est accessible depuis une autre
+case atteignable, marquee par .'' */
 static int	is_path_around(char **map, int i, int j)
 {
 	if (map[i + 1][j] != '.' && map[i - 1][j] != '.' && map[i][j + 1] != '.'
@@ -20,6 +22,8 @@ static int	is_path_around(char **map, int i, int j)
 	return (1);
 }
 
+/* fonction qui implemente l'algorithme de flood fill pour explorer la map et
+marquer les zones atteignables a partir d'une position donnee */
 static void	flood_fill(t_game *game, int y, int x)
 {
 	if (y <= 0 || y >= game->temp->y - 1 || x <= 0 || x >= game->temp->x - 1)
@@ -36,6 +40,8 @@ static void	flood_fill(t_game *game, int y, int x)
 	flood_fill(game, y, x + 1);
 }
 
+/* fonction qui check que la sortie est accessible et les collectibles tous
+atteignables par le joueur */
 int	check_path(t_game *game)
 {
 	int	i;

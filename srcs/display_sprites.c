@@ -6,11 +6,14 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:39:54 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 20:07:29 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:28:54 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+/* fonctions qui utilisent mlx_put_image_to_window pour afficher les sprites
+sur la fenetre de jeu */
 
 void	add_floor(t_game *game, int y, int x)
 {

@@ -6,12 +6,14 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:19:45 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 19:59:19 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:35:51 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+/* fonction qui maj l'affichage du sprite du joueur en fonction de sa position
+sur la map */
 void	update_sprite(t_game *game)
 {
 	if (game->map[game->player_y][game->player_x] == '0')
@@ -21,6 +23,8 @@ void	update_sprite(t_game *game)
 		add_player(game, game->player_y, game->player_x);
 }
 
+/* fonction qui gere le chargement des images necessaires pour afficher
+les elements de la map sur la fenetre graphique */
 void	assign_all_sprites(t_game *game)
 {
 	game->sprite->wall = mlx_xpm_file_to_image(game->mlx_ptr, WALL,
@@ -38,6 +42,7 @@ void	assign_all_sprites(t_game *game)
 	check_sprites_alloc(game);
 }
 
+/* fonction qui libere les ressources graphiques allouees pour les sprites */
 void	destroy_all_sprites(t_game *game)
 {
 	if (game->sprite != NULL)

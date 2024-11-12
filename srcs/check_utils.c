@@ -6,12 +6,13 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 19:23:42 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 20:29:14 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:28:18 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+/* fonction qui lit un fichier et compte les lignes valides dans la map */
 int	count_lines(char *argv, t_game *game)
 {
 	manage_file(argv, game, 'O');
@@ -34,6 +35,8 @@ int	count_lines(char *argv, t_game *game)
 	return (1);
 }
 
+/* fonction qui check la validitede la derniere ligne en s'assurant au'il n'y
+a pas de \n supplementaire */
 static void	check_last_line(t_game *game, char *line, int i)
 {
 	if (i == game->temp->y - 1)
@@ -43,6 +46,9 @@ static void	check_last_line(t_game *game, char *line, int i)
 	}
 }
 
+/* fonction qui initialise et remplit la map : alloue de la memoire pour
+la matrice temporaire et la matrice principale, nettoie et stocke chaque
+ligne, maj les dimensions de la carte */
 void	fill_matrix(char *argv, t_game *game, int i)
 {
 	alloc_matrix(&game->temp->map_check, game);
@@ -70,6 +76,7 @@ void	fill_matrix(char *argv, t_game *game, int i)
 	}
 }
 
+/* fonction qui gere l'ouverture et la fermeture du fichier */
 void	manage_file(char *argv, t_game *game, int flag)
 {
 	if (flag == 'O')
@@ -88,6 +95,7 @@ void	manage_file(char *argv, t_game *game, int flag)
 	}
 }
 
+/* fonction qui cherche la premiere ocurrence de '\n' */
 char	*ft_getnl(char *str)
 {
 	int	i;

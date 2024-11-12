@@ -6,12 +6,13 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 18:00:11 by vgalmich          #+#    #+#             */
-/*   Updated: 2024/11/11 20:04:14 by vgalmich         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:46:42 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+/* fonction qui check le bon format .ber du fichier en argument */
 int	check_map_extension(char *argv)
 {
 	int	start;
@@ -22,6 +23,8 @@ int	check_map_extension(char *argv)
 	return (1);
 }
 
+/* fonction qui check la presence et le nb des elements essentiels (joueur,
+sortie et collectibles) dans la map */
 static int	check_map_items(t_game *game, int i, int j)
 {
 	while (i++ < game->temp->y - 1)
@@ -50,6 +53,8 @@ static int	check_map_items(t_game *game, int i, int j)
 	return (1);
 }
 
+/* fonction qui check que la map est bien entouree de murs, pour
+s'assurer que le joueur ne peut pas sortir de la zone de jeu */
 static int	check_walls(t_game *game)
 {
 	int	i;
@@ -76,6 +81,8 @@ static int	check_walls(t_game *game)
 	return (1);
 }
 
+/* fonction qui check que chaque ligne de le map a la meme taille pour que
+la map soit rectangulaire */
 static int	check_map_size(t_game *game)
 {
 	int	i;
@@ -90,6 +97,8 @@ static int	check_map_size(t_game *game)
 	return (1);
 }
 
+/* fonction qui check toutes les conditions requises pour que la map soit
+valide */
 int	is_map_valid(char *argv, t_game *game)
 {
 	if (count_lines(argv, game) == 0)
